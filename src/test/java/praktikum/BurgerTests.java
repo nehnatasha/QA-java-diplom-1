@@ -67,14 +67,11 @@ public class BurgerTests {
     public void getPriceOfBurgerTest(){
 
         burger.setBuns(mockBun);
-        Mockito.when(mockBun.getPrice()).thenReturn(100.0f);
+        Mockito.when(mockBun.getPrice()).thenReturn(100f);
         burger.addIngredient(database.availableIngredients().get(4));
-
-        float addPrice = database.availableIngredients().get(4).getPrice();
-        float finishPrice = mockBun.getPrice() * 2 + addPrice;
         float actualPrice = burger.getPrice();
 
-        assertEquals("Некорректно рассчитана стоимость бургера", finishPrice, actualPrice, 0.0f);
+        assertEquals("Некорректно рассчитана стоимость бургера", 1600f, actualPrice, 0.0f);
     }
 
     @Test
