@@ -67,11 +67,11 @@ public class BurgerTests {
     public void getPriceOfBurgerTest(){
 
         burger.setBuns(mockBun);
-        Mockito.when(mockBun.getPrice()).thenReturn(345.0f);
+        Mockito.when(mockBun.getPrice()).thenReturn(100.0f);
         burger.addIngredient(database.availableIngredients().get(4));
 
         float addPrice = database.availableIngredients().get(4).getPrice();
-        float finishPrice = mockBun.getPrice() + addPrice;
+        float finishPrice = mockBun.getPrice() * 2 + addPrice;
         float actualPrice = burger.getPrice();
 
         assertEquals("Некорректно рассчитана стоимость бургера", finishPrice, actualPrice, 0.0f);
@@ -92,6 +92,16 @@ public class BurgerTests {
                         &&burger.getReceipt().contains(ingredientList.get(4).getName())
                         &&burger.getReceipt().contains(ingredientList.get(5).getName())
         );
+        assertEquals("(==== " + mockBun.getName() + " ====)\r\n" +
+                "= sauce " + ingredientList.get(0).getName() + " =\r\n" +
+                "= sauce " + ingredientList.get(1).getName() + " =\r\n" +
+                "= sauce " + ingredientList.get(2).getName() + " =\r\n" +
+                "= filling " + ingredientList.get(3).getName() + " =\r\n" +
+                "= filling " + ingredientList.get(4).getName() + " =\r\n" +
+                "= filling " + ingredientList.get(5).getName() + " =\r\n" +
+                "(==== " + mockBun.getName() + " ====)\r\n" +
+                "\r\n" +
+                "Price: 1200,000000\r\n", burger.getReceipt());
     }
 
     @Test
