@@ -80,15 +80,6 @@ public class BurgerTests {
         burger.setBuns(mockBun);
         List<Ingredient> ingredientList = new ArrayList<>(burger.ingredients);
         Mockito.when(mockBun.getName()).thenReturn("Булочка для проверки");
-        assertTrue("Булочка из рецепта не соответствует действительности", burger.getReceipt().contains("Булочка для проверки"));
-        assertTrue("В рецепте нет ингридента из сделанного бургера",
-                burger.getReceipt().contains(ingredientList.get(0).getName())
-                        &&burger.getReceipt().contains(ingredientList.get(1).getName())
-                        &&burger.getReceipt().contains(ingredientList.get(2).getName())
-                        &&burger.getReceipt().contains(ingredientList.get(3).getName())
-                        &&burger.getReceipt().contains(ingredientList.get(4).getName())
-                        &&burger.getReceipt().contains(ingredientList.get(5).getName())
-        );
         assertEquals("(==== " + mockBun.getName() + " ====)\r\n" +
                 "= sauce " + ingredientList.get(0).getName() + " =\r\n" +
                 "= sauce " + ingredientList.get(1).getName() + " =\r\n" +
